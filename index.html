@@ -4,7 +4,7 @@
   <title>Sophie</title>
   <style>
     body {
-      background-color: #0767b3;
+      background-color: #00203a;
       color: white;
       font-family: Arial, sans-serif;
       margin: 0;
@@ -114,7 +114,7 @@
     </div>
     <h1 class="title">Sophie</h1>
     <img src="https://cdn.leonardo.ai/users/9c8d859f-322d-41be-a972-492b67272818/generations/584666f2-7ef1-4e63-a7ae-24dd1f595c75/variations/Default_masterpiece_realistic_27yr_old_female_beautiful_face_w_2_584666f2-7ef1-4e63-a7ae-24dd1f595c75_1.jpg" alt="Imagen" class="image" width="200" height="230">
-    <input type="text" class="text-input" placeholder="Escribe tu mensaje" value="{{ answer }}">
+    <input type="text" class="text-input" placeholder="Escribe tu mensaje" id="answer-input">
     <button class="send-button">Enviar</button>
     <div class="output"></div>
     <button class="listen-button">Hablar</button>
@@ -155,7 +155,12 @@ function addChatMessage(sender, message) {
   chatMessage.innerHTML += ' ' + message;
   output.appendChild(chatMessage);
   output.scrollTop = output.scrollHeight;
+  
+  if (sender === 'Sophie') {
+    document.getElementById('answer-input').value = message;
+  }
 }
+
 
 function ask() {
   fetch('/talk', { method: 'POST' })
@@ -196,5 +201,4 @@ recognition.onresult = function(event) {
 }
   </script>
 </body>
-</html>
-
+</html>  

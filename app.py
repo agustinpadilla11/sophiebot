@@ -5,8 +5,9 @@ from pygame import mixer
 import os
 import time as ti
 import random
-from flask import Flask, render_template, request
+from flask import Flask, send_file, request
 import config as cf
+ 
 
 
 openai.api_key = cf.key
@@ -16,7 +17,7 @@ app = Flask(__name__)
 
 @app.route('/')
 def home():
-    return render_template('index.html')
+    return send_file('index.html')
 
 # definimos cómo vamos a tomar el audio del mic y pasarlo a texto
 def transformar_audio_a_texto():
@@ -102,7 +103,5 @@ def send():
     hablar_en(answer)
     return answer
     #return render_template('index5.html', answer=answer)
-
 if __name__ == '__main__':
     app.run()
-
